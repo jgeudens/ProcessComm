@@ -65,8 +65,14 @@ CMakeLists.txt.user*
 *.Debug
 *.Release
 
-# Python byte code
-*.pyc
+# Python
+__pycache__
+.mypy_cache
+.vscode
+build
+dist
+venv*
+*/src/*egg-info
 
 # Binaries
 # --------
