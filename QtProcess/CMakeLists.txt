@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 
 project(QtProcess VERSION 0.1 LANGUAGES CXX)
 
@@ -20,7 +20,6 @@ set(PROJECT_SOURCES
 )
 
 qt_add_executable(${PROJECT_NAME}
-    MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
 )
 
@@ -38,5 +37,3 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-qt_finalize_executable(${PROJECT_NAME})
