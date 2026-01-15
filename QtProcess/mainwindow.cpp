@@ -7,22 +7,23 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-    EchoClient client(QUrl("http://127.0.0.1:50051"));
+    m_echoClient = new EchoClient(QUrl("http://127.0.0.1:50051"), this);
 
-    QObject::connect(&client, &EchoClient::echoSucceeded, [&](const QString& reply) {
+    QObject::connect(m_echoClient, &EchoClient::echoSucceeded, [this](const QString& reply) {
         qInfo() << "Reply:" << reply;
         QCoreApplication::quit();
     });
 
-    QObject::connect(&client, &EchoClient::echoFailed, [&](int status, const QString& error) {
+    QObject::connect(m_echoClient, &EchoClient::echoFailed, [this](int status, const QString& error) {
         qWarning() << "RPC failed:" << status << error;
         QCoreApplication::quit();
     });
 
-    client.echo("Hello from modular Qt gRPC client");
+    m_echoClient->echo("Hello from modular Qt gRPC client");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    // m_echoClient is deleted automatically as QObject child of this MainWindow
 }
