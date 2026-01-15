@@ -25,7 +25,9 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python",
 ]
-dependencies = []
+
+dependencies = ['grpcio==1.76.0', 'grpcio-tools==1.76.0', 'protobuf==6.33.4']
+
 dynamic = ["version"]
 
 [project.optional-dependencies]

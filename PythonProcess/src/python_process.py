@@ -1,6 +1,8 @@
 """script."""
 
+from src.server import serve
+
 
 def run() -> None:
     """Run script."""
-    print("Script is running)")
+    serve()
