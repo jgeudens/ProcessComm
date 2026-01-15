@@ -12,19 +12,17 @@ void EchoClient::echo(const QString& message)
     echo::EchoRequest request;
     request.setMessage(message);
 
-    std::unique_ptr<QGrpcCallReply> reply = m_client->Echo(request);
-    const auto* replyPtr = reply.get();
+    auto* reply = m_client->Echo(request).release();
 
     QObject::connect(
-      replyPtr, &QGrpcCallReply::finished, replyPtr,
-      [this, reply = std::move(reply)](const QGrpcStatus& status) {
+      reply, &QGrpcCallReply::finished, this,
+      [this, reply](const QGrpcStatus& status) {
           if (status.isOk())
           {
               const auto response = reply->read<echo::EchoReply>();
-
               if (response.has_value())
               {
-                  emit echoSucceeded(response.value().message());
+                  emit echoSucceeded(response->message());
               }
               else
               {
@@ -33,8 +31,10 @@ void EchoClient::echo(const QString& message)
           }
           else
           {
-              qDebug() << "Client (UnaryCall) failed:" << status;
+              emit echoFailed(static_cast<int>(status.code()), status.message());
           }
+
+          reply->deleteLater();
       },
       Qt::SingleShotConnection);
 }
