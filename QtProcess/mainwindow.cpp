@@ -9,12 +9,12 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     m_echoClient = new EchoClient(QUrl("http://127.0.0.1:50051"), this);
 
-    QObject::connect(m_echoClient, &EchoClient::echoSucceeded, [this](const QString& reply) {
+    connect(m_echoClient, &EchoClient::echoSucceeded, [this](const QString& reply) {
         qInfo() << "Reply:" << reply;
         QCoreApplication::quit();
     });
 
-    QObject::connect(m_echoClient, &EchoClient::echoFailed, [this](int status, const QString& error) {
+    connect(m_echoClient, &EchoClient::echoFailed, [this](int status, const QString& error) {
         qWarning() << "RPC failed:" << status << error;
         QCoreApplication::quit();
     });

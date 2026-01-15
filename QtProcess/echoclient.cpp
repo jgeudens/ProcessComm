@@ -14,7 +14,7 @@ void EchoClient::echo(const QString& message)
 
     auto* reply = m_client->Echo(request).release();
 
-    QObject::connect(
+    connect(
       reply, &QGrpcCallReply::finished, this,
       [this, reply](const QGrpcStatus& status) {
           if (status.isOk())
@@ -26,7 +26,7 @@ void EchoClient::echo(const QString& message)
               }
               else
               {
-                  emit echoFailed(0, QStringLiteral("Failed to read response"));
+                  emit echoFailed(-1, QStringLiteral("Failed to read response"));
               }
           }
           else
