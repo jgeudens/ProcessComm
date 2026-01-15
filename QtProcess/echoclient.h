@@ -1,3 +1,6 @@
+#ifndef ECHOCLIENT_H
+#define ECHOCLIENT_H
+
 #include <QObject>
 #include <memory>
 
@@ -23,3 +26,5 @@ private:
     std::shared_ptr<QGrpcHttp2Channel> m_channel;
     std::unique_ptr<echo::EchoService::Client> m_client;
 };
+
+#endif // ECHOCLIENT_H
