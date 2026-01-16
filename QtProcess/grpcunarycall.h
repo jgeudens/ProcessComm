@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QtGrpc/QGrpcCallReply>
 #include <QtGrpc/QGrpcStatus>
+#include <utility>
 
 template<typename ReplyT, typename SuccessFn, typename ErrorFn>
 inline void executeUnaryRpc(QObject* context, QGrpcCallReply* reply, SuccessFn&& onSuccess, ErrorFn&& onError)
