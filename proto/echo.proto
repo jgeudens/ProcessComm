@@ -13,4 +13,3 @@ message EchoRequest {
 message EchoReply {
   string message = 1;
 }
-

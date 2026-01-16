@@ -7,7 +7,7 @@
 * https://doc.qt.io/qt-6/qtgrpc-index.html
 * Prerequisite
   * `sudo dnf install protobuf-compiler protobuf-devel`
-* Proto 
+* Proto
 
 ## Python
 
