@@ -1,4 +1,5 @@
 #include "echoclient.h"
+#include "grpcunarycall.h"
 
 EchoClient::EchoClient(const QUrl& endpoint, QObject* parent) : QObject(parent)
 {
@@ -14,27 +15,7 @@ void EchoClient::echo(const QString& message)
 
     auto* reply = m_client->Echo(request).release();
 
-    connect(
-      reply, &QGrpcCallReply::finished, this,
-      [this, reply](const QGrpcStatus& status) {
-          if (status.isOk())
-          {
-              const auto response = reply->read<echo::EchoReply>();
-              if (response.has_value())
-              {
-                  emit echoSucceeded(response->message());
-              }
-              else
-              {
-                  emit echoFailed(-1, QStringLiteral("Failed to read response"));
-              }
-          }
-          else
-          {
-              emit echoFailed(static_cast<int>(status.code()), status.message());
-          }
-
-          reply->deleteLater();
-      },
-      Qt::SingleShotConnection);
+    executeUnaryRpc<echo::EchoReply>(
+      this, reply, [this](const echo::EchoReply& response) { emit echoSucceeded(response.message()); },
+      [this](int code, const QString& error) { emit echoFailed(code, error); });
 }

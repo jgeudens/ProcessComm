@@ -36,6 +36,7 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         echoclient.cpp
+        grpcunarycall.h
 )
 
 qt_add_executable(${PROJECT_NAME}
