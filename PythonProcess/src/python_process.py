@@ -1,6 +1,6 @@
 """script."""
 
-from src.server import serve
+from .server import serve
 
 
 def run() -> None:

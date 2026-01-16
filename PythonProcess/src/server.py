@@ -1,11 +1,15 @@
 """A simple gRPC server implementation in Python."""
 
+import logging
 from concurrent import futures
 
 import grpc
 
 import echo_pb2
 import echo_pb2_grpc
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 class EchoService(
@@ -15,7 +19,7 @@ class EchoService(
 
     def Echo(self, request, context):
         """Handles the Echo RPC call."""
-        print(f"Received: {request.message}")
+        logger.info("Received: %s", request.message)
         return echo_pb2.EchoReply(message=request.message)  # pylint: disable=no-member
 
 
