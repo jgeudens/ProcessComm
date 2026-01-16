@@ -1,3 +1,5 @@
+"""A simple gRPC server implementation in Python."""
+
 from concurrent import futures
 
 import grpc
@@ -6,20 +8,19 @@ import echo_pb2
 import echo_pb2_grpc
 
 
-class EchoService(echo_pb2_grpc.EchoServiceServicer):
-    """
-    Implements the EchoService defined in echo.proto.
-    """
+class EchoService(
+    echo_pb2_grpc.EchoServiceServicer
+):  # pylint: disable=too-few-public-methods
+    """Implements the EchoService defined in echo.proto."""
 
     def Echo(self, request, context):
+        """Handles the Echo RPC call."""
         print(f"Received: {request.message}")
-        return echo_pb2.EchoReply(message=request.message)
+        return echo_pb2.EchoReply(message=request.message)  # pylint: disable=no-member
 
 
 def serve():
-    """
-    Starts the gRPC server and listens for incoming requests.
-    """
+    """Starts the gRPC server and listens for incoming requests."""
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=4),
         options=[

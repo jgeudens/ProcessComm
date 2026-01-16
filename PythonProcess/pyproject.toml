@@ -41,6 +41,8 @@ development = [
     'isort==7.0.0',
     'pylint==4.0.4',
     'pre-commit==4.5.1',
+    'types-protobuf==6.32.1.20251210',
+    'types-grpcio==1.0.0.20251009',
 ]
 
 [tool.isort]
