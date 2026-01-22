@@ -20,9 +20,6 @@ inline void executeUnaryRpc(QObject* context, QGrpcCallReply* rawReply, SuccessF
 
     QGrpcCallReply* reply = guard.get();
 
-    // Tie reply to context for Qt-side lifetime safety
-    reply->setParent(context);
-
     QPointer<QObject> safeContext(context);
 
     QObject::connect(
