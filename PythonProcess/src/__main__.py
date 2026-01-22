@@ -1,12 +1,25 @@
-"""Main entry point."""
+"""Entrypoint that starts the encapsulated gRPC `Server` class."""
 
-from src.python_process import run
+import logging
+import sys
 
+from src.server.server import Server
 
-def main() -> None:
-    """Run script."""
-    run()
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 if __name__ == "__main__":
-    main()
+    srv = Server()
+    srv.start()
+
+    print("gRPC server is running. Press Ctrl+C to stop.")
+    try:
+        srv.block_until_termination()
+        # If wait_for_termination returns normally, exit with error
+        logger.error("gRPC server stopped unexpectedly")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        logger.info("Shutting down gRPC server...")
+        srv.stop(0)
+        sys.exit(0)
