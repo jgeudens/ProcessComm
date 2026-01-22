@@ -1,17 +1,38 @@
 #pragma once
 
+#include "grpcreplyguard.h"
 #include <QObject>
+#include <QPointer>
 #include <QtGrpc/QGrpcCallReply>
 #include <QtGrpc/QGrpcStatus>
 #include <utility>
 
 template<typename ReplyT, typename SuccessFn, typename ErrorFn>
-inline void executeUnaryRpc(QObject* context, QGrpcCallReply* reply, SuccessFn&& onSuccess, ErrorFn&& onError)
+inline void executeUnaryRpc(QObject* context, QGrpcCallReply* rawReply, SuccessFn&& onSuccess, ErrorFn&& onError)
 {
+    GrpcReplyGuard guard(rawReply);
+
+    if (!guard)
+    {
+        onError(-1, QStringLiteral("Failed to start RPC"));
+        return;
+    }
+
+    QGrpcCallReply* reply = guard.get();
+
+    // Tie reply to context for Qt-side lifetime safety
+    reply->setParent(context);
+
+    QPointer<QObject> safeContext(context);
+
     QObject::connect(
-      reply, &QGrpcCallReply::finished, context,
-      [reply, onSuccess = std::forward<SuccessFn>(onSuccess),
-       onError = std::forward<ErrorFn>(onError)](const QGrpcStatus& status) {
+      reply, &QGrpcCallReply::finished, reply,
+      [reply, safeContext, guard = std::move(guard), onSuccess = std::forward<SuccessFn>(onSuccess),
+       onError = std::forward<ErrorFn>(onError)](const QGrpcStatus& status) mutable {
+          // Context already destroyed
+          if (!safeContext)
+              return;
+
           if (status.isOk())
           {
               const auto response = reply->template read<ReplyT>();
@@ -28,8 +49,6 @@ inline void executeUnaryRpc(QObject* context, QGrpcCallReply* reply, SuccessFn&&
           {
               onError(static_cast<int>(status.code()), status.message());
           }
-
-          reply->deleteLater();
       },
       Qt::SingleShotConnection);
 }
