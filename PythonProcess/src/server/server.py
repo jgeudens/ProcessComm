@@ -11,7 +11,9 @@ from concurrent import futures
 import grpc
 
 from echo.v1 import echo_pb2_grpc
+from logger.v1 import logger_pb2_grpc
 from src.services.echo import EchoService
+from src.services.loggerplugin import LoggerPluginService
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +44,9 @@ class Server:
 
     def _register_services(self) -> None:
         echo_pb2_grpc.add_EchoServiceServicer_to_server(EchoService(), self._server)
+        logger_pb2_grpc.add_LoggerPluginServicer_to_server(
+            LoggerPluginService(), self._server
+        )
 
     def start(self):
         """Start the gRPC server (non-threaded).
