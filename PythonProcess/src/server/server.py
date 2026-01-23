@@ -10,7 +10,7 @@ from concurrent import futures
 
 import grpc
 
-import echo_pb2_grpc
+from echo.v1 import echo_pb2_grpc
 from src.services.echo import EchoService
 
 logger = logging.getLogger(__name__)
