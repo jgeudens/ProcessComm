@@ -9,7 +9,9 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+// Forward declarations
 class EchoClient;
+class LoggerClient;
 
 class MainWindow : public QMainWindow
 {
@@ -20,7 +22,11 @@ public:
     ~MainWindow();
 
 private:
+    void connectEcho();
+    void connectLogger();
+
     Ui::MainWindow* ui;
     EchoClient* m_echoClient;
+    LoggerClient* m_loggerClient;
 };
 #endif // MAINWINDOW_H
