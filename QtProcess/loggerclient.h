@@ -10,6 +10,8 @@
 
 #include "logger_client.grpc.qpb.h"
 
+#include "pluginversion.h"
+
 class LoggerClient : public QObject
 {
     Q_OBJECT
@@ -20,9 +22,11 @@ public:
 
 signals:
     void callFailed(int grpcStatus, const QString& errorString);
-    void receivedPluginInfo(const QString& info);
+    void receivedPluginInfo(const PluginVersion& pluginVersion);
 
 private:
-    std::shared_ptr<QGrpcHttp2Channel> m_channel;
-    std::unique_ptr<logger::v1::LoggerPlugin::Client> m_client;
+    std::shared_ptr<QGrpcHttp2Channel> _channel;
+    std::unique_ptr<logger::v1::LoggerPlugin::Client> _client;
+
+    PluginVersion _pluginVersion;
 };

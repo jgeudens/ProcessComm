@@ -25,8 +25,8 @@ private:
     void connectEcho();
     void connectLogger();
 
-    Ui::MainWindow* ui;
-    EchoClient* m_echoClient;
-    LoggerClient* m_loggerClient;
+    Ui::MainWindow* _ui;
+    EchoClient* _echoClient;
+    LoggerClient* _loggerClient;
 };
 #endif // MAINWINDOW_H

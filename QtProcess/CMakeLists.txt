@@ -42,6 +42,9 @@ set(PROJECT_SOURCES
         mainwindow.ui
         loggerclient.cpp
         loggerclient.h
+
+        pluginversion.h
+        
         echoclient.cpp
         echoclient.h
         grpcunarycall.h

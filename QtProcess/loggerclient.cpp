@@ -3,26 +3,22 @@
 
 LoggerClient::LoggerClient(const QUrl& endpoint, QObject* parent) : QObject(parent)
 {
-    m_channel = std::make_shared<QGrpcHttp2Channel>(endpoint);
-    m_client = std::make_unique<logger::v1::LoggerPlugin::Client>();
-    m_client->attachChannel(m_channel);
+    _channel = std::make_shared<QGrpcHttp2Channel>(endpoint);
+    _client = std::make_unique<logger::v1::LoggerPlugin::Client>();
+    _client->attachChannel(_channel);
 }
 
 void LoggerClient::requestPluginInfo()
 {
     logger::v1::GetPluginInfoRequest request;
 
-    auto* reply = m_client->GetPluginInfo(request).release();
+    auto* reply = _client->GetPluginInfo(request).release();
 
     executeUnaryRpc<logger::v1::GetPluginInfoResponse>(
       this, reply,
       [this](const logger::v1::GetPluginInfoResponse& response) {
-          QString info = QString("version: %1\ntype: %2\nauthor: %3\ndescription: %4")
-                           .arg(response.version())
-                           .arg(response.type())
-                           .arg(response.author())
-                           .arg(response.description());
-          emit receivedPluginInfo(info);
+          PluginVersion _pluginVersion(response.version(), response.type(), response.author(), response.description());
+          emit receivedPluginInfo(_pluginVersion);
       },
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }
