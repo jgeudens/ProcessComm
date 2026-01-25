@@ -91,15 +91,15 @@ Global___GetAvailableDataPointsRequest: _TypeAlias = GetAvailableDataPointsReque
 class GetAvailableDataPointsResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
-    DATAPOINT_FIELD_NUMBER: _builtins.int
+    DATA_POINT_FIELD_NUMBER: _builtins.int
     @_builtins.property
-    def dataPoint(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
+    def data_point(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
     def __init__(
         self,
         *,
-        dataPoint: _abc.Iterable[_builtins.str] | None = ...,
+        data_point: _abc.Iterable[_builtins.str] | None = ...,
     ) -> None: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["dataPoint", b"dataPoint"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["data_point", b"data_point"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
 
 Global___GetAvailableDataPointsResponse: _TypeAlias = GetAvailableDataPointsResponse  # noqa: Y015
@@ -148,15 +148,15 @@ Global___StopLoggingResponse: _TypeAlias = StopLoggingResponse  # noqa: Y015
 class ReadLogRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
-    DATAPOINT_FIELD_NUMBER: _builtins.int
+    DATA_POINT_FIELD_NUMBER: _builtins.int
     @_builtins.property
-    def DataPoint(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
+    def data_point(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
     def __init__(
         self,
         *,
-        DataPoint: _abc.Iterable[_builtins.str] | None = ...,
+        data_point: _abc.Iterable[_builtins.str] | None = ...,
     ) -> None: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["DataPoint", b"DataPoint"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["data_point", b"data_point"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
 
 Global___ReadLogRequest: _TypeAlias = ReadLogRequest  # noqa: Y015

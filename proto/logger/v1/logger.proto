@@ -27,7 +27,7 @@ message GetPluginInfoResponse {
 message GetAvailableDataPointsRequest {}
 
 message GetAvailableDataPointsResponse {
-  repeated string dataPoint = 1;
+  repeated string data_point = 1;
 }
 
 message StartLoggingRequest {}
@@ -39,7 +39,7 @@ message StopLoggingRequest {}
 message StopLoggingResponse {}
 
 message ReadLogRequest {
-  repeated string DataPoint = 1;
+  repeated string data_point = 1;
 }
 
 message ReadLogResponse {

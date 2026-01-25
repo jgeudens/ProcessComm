@@ -24,15 +24,15 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16logger/v1/logger.proto\x12\tlogger.v1\"\x16\n\x14GetPluginInfoRequest\"[\n\x15GetPluginInfoResponse\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\"\x1f\n\x1dGetAvailableDataPointsRequest\"3\n\x1eGetAvailableDataPointsResponse\x12\x11\n\tdataPoint\x18\x01 \x03(\t\"\x15\n\x13StartLoggingRequest\"\x16\n\x14StartLoggingResponse\"\x14\n\x12StopLoggingRequest\"\x15\n\x13StopLoggingResponse\"#\n\x0eReadLogRequest\x12\x11\n\tDataPoint\x18\x01 \x03(\t\"8\n\x0fReadLogResponse\x12%\n\x07results\x18\x01 \x03(\x0b\x32\x14.logger.v1.LogResult\"r\n\tLogResult\x12\x15\n\rendpoint_name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\x12(\n\x06status\x18\x03 \x01(\x0e\x32\x18.logger.v1.LogReadStatus\x12\x15\n\rerror_message\x18\x04 \x01(\t*\xac\x01\n\rLogReadStatus\x12\x1b\n\x17LOG_READ_STATUS_SUCCESS\x10\x00\x12\x1f\n\x1bLOG_READ_STATUS_UNSPECIFIED\x10\x01\x12\x1d\n\x19LOG_READ_STATUS_NOT_FOUND\x10\x02\x12\x1b\n\x17LOG_READ_STATUS_TIMEOUT\x10\x03\x12!\n\x1dLOG_READ_STATUS_GENERIC_ERROR\x10\x06\x32\xb2\x03\n\x0cLoggerPlugin\x12R\n\rGetPluginInfo\x12\x1f.logger.v1.GetPluginInfoRequest\x1a .logger.v1.GetPluginInfoResponse\x12m\n\x16GetAvailableDataPoints\x12(.logger.v1.GetAvailableDataPointsRequest\x1a).logger.v1.GetAvailableDataPointsResponse\x12O\n\x0cStartLogging\x12\x1e.logger.v1.StartLoggingRequest\x1a\x1f.logger.v1.StartLoggingResponse\x12L\n\x0bStopLogging\x12\x1d.logger.v1.StopLoggingRequest\x1a\x1e.logger.v1.StopLoggingResponse\x12@\n\x07ReadLog\x12\x19.logger.v1.ReadLogRequest\x1a\x1a.logger.v1.ReadLogResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16logger/v1/logger.proto\x12\tlogger.v1\"\x16\n\x14GetPluginInfoRequest\"[\n\x15GetPluginInfoResponse\x12\x0f\n\x07version\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\"\x1f\n\x1dGetAvailableDataPointsRequest\"4\n\x1eGetAvailableDataPointsResponse\x12\x12\n\ndata_point\x18\x01 \x03(\t\"\x15\n\x13StartLoggingRequest\"\x16\n\x14StartLoggingResponse\"\x14\n\x12StopLoggingRequest\"\x15\n\x13StopLoggingResponse\"$\n\x0eReadLogRequest\x12\x12\n\ndata_point\x18\x01 \x03(\t\"8\n\x0fReadLogResponse\x12%\n\x07results\x18\x01 \x03(\x0b\x32\x14.logger.v1.LogResult\"r\n\tLogResult\x12\x15\n\rendpoint_name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05\x12(\n\x06status\x18\x03 \x01(\x0e\x32\x18.logger.v1.LogReadStatus\x12\x15\n\rerror_message\x18\x04 \x01(\t*\xac\x01\n\rLogReadStatus\x12\x1b\n\x17LOG_READ_STATUS_SUCCESS\x10\x00\x12\x1f\n\x1bLOG_READ_STATUS_UNSPECIFIED\x10\x01\x12\x1d\n\x19LOG_READ_STATUS_NOT_FOUND\x10\x02\x12\x1b\n\x17LOG_READ_STATUS_TIMEOUT\x10\x03\x12!\n\x1dLOG_READ_STATUS_GENERIC_ERROR\x10\x06\x32\xb2\x03\n\x0cLoggerPlugin\x12R\n\rGetPluginInfo\x12\x1f.logger.v1.GetPluginInfoRequest\x1a .logger.v1.GetPluginInfoResponse\x12m\n\x16GetAvailableDataPoints\x12(.logger.v1.GetAvailableDataPointsRequest\x1a).logger.v1.GetAvailableDataPointsResponse\x12O\n\x0cStartLogging\x12\x1e.logger.v1.StartLoggingRequest\x1a\x1f.logger.v1.StartLoggingResponse\x12L\n\x0bStopLogging\x12\x1d.logger.v1.StopLoggingRequest\x1a\x1e.logger.v1.StopLoggingResponse\x12@\n\x07ReadLog\x12\x19.logger.v1.ReadLogRequest\x1a\x1a.logger.v1.ReadLogResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'logger.v1.logger_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_LOGREADSTATUS']._serialized_start=544
-  _globals['_LOGREADSTATUS']._serialized_end=716
+  _globals['_LOGREADSTATUS']._serialized_start=546
+  _globals['_LOGREADSTATUS']._serialized_end=718
   _globals['_GETPLUGININFOREQUEST']._serialized_start=37
   _globals['_GETPLUGININFOREQUEST']._serialized_end=59
   _globals['_GETPLUGININFORESPONSE']._serialized_start=61
@@ -40,21 +40,21 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_GETAVAILABLEDATAPOINTSREQUEST']._serialized_start=154
   _globals['_GETAVAILABLEDATAPOINTSREQUEST']._serialized_end=185
   _globals['_GETAVAILABLEDATAPOINTSRESPONSE']._serialized_start=187
-  _globals['_GETAVAILABLEDATAPOINTSRESPONSE']._serialized_end=238
-  _globals['_STARTLOGGINGREQUEST']._serialized_start=240
-  _globals['_STARTLOGGINGREQUEST']._serialized_end=261
-  _globals['_STARTLOGGINGRESPONSE']._serialized_start=263
-  _globals['_STARTLOGGINGRESPONSE']._serialized_end=285
-  _globals['_STOPLOGGINGREQUEST']._serialized_start=287
-  _globals['_STOPLOGGINGREQUEST']._serialized_end=307
-  _globals['_STOPLOGGINGRESPONSE']._serialized_start=309
-  _globals['_STOPLOGGINGRESPONSE']._serialized_end=330
-  _globals['_READLOGREQUEST']._serialized_start=332
-  _globals['_READLOGREQUEST']._serialized_end=367
-  _globals['_READLOGRESPONSE']._serialized_start=369
-  _globals['_READLOGRESPONSE']._serialized_end=425
-  _globals['_LOGRESULT']._serialized_start=427
-  _globals['_LOGRESULT']._serialized_end=541
-  _globals['_LOGGERPLUGIN']._serialized_start=719
-  _globals['_LOGGERPLUGIN']._serialized_end=1153
+  _globals['_GETAVAILABLEDATAPOINTSRESPONSE']._serialized_end=239
+  _globals['_STARTLOGGINGREQUEST']._serialized_start=241
+  _globals['_STARTLOGGINGREQUEST']._serialized_end=262
+  _globals['_STARTLOGGINGRESPONSE']._serialized_start=264
+  _globals['_STARTLOGGINGRESPONSE']._serialized_end=286
+  _globals['_STOPLOGGINGREQUEST']._serialized_start=288
+  _globals['_STOPLOGGINGREQUEST']._serialized_end=308
+  _globals['_STOPLOGGINGRESPONSE']._serialized_start=310
+  _globals['_STOPLOGGINGRESPONSE']._serialized_end=331
+  _globals['_READLOGREQUEST']._serialized_start=333
+  _globals['_READLOGREQUEST']._serialized_end=369
+  _globals['_READLOGRESPONSE']._serialized_start=371
+  _globals['_READLOGRESPONSE']._serialized_end=427
+  _globals['_LOGRESULT']._serialized_start=429
+  _globals['_LOGRESULT']._serialized_end=543
+  _globals['_LOGGERPLUGIN']._serialized_start=721
+  _globals['_LOGGERPLUGIN']._serialized_end=1155
 # @@protoc_insertion_point(module_scope)
