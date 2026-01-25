@@ -24,7 +24,7 @@ signals:
 
 private:
     std::shared_ptr<QGrpcHttp2Channel> m_channel;
-    std::unique_ptr<echo::EchoService::Client> m_client;
+    std::unique_ptr<echo::v1::EchoService::Client> m_client;
 };
 
 #endif // ECHOCLIENT_H

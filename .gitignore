@@ -86,3 +86,4 @@ venv*
 .rcc/
 .uic/
 Qt/build/
+.cache/

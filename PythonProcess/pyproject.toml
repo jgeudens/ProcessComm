@@ -38,6 +38,7 @@ development = [
     'pre-commit==4.5.1',
     'types-protobuf==6.32.1.20251210',
     'types-grpcio==1.0.0.20251009',
+    'mypy-protobuf==5.0.0',
 ]
 
 [tool.isort]
