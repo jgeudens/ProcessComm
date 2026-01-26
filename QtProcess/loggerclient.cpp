@@ -17,8 +17,9 @@ void LoggerClient::requestPluginInfo()
     executeUnaryRpc<logger::v1::GetPluginInfoResponse>(
       this, reply,
       [this](const logger::v1::GetPluginInfoResponse& response) {
-          PluginVersion _pluginVersion(response.version(), response.type(), response.author(), response.description());
-          emit receivedPluginInfo(_pluginVersion);
+          PluginVersion pluginVersion(response.version(), response.type(), response.author(), response.description());
+          _pluginVersion = pluginVersion;
+          emit receivedPluginInfo(pluginVersion);
       },
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }

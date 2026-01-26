@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QMetaType>
 #include <QString>
 
 class PluginVersion
@@ -38,3 +39,5 @@ private:
     QString _author;
     QString _description;
 };
+
+Q_DECLARE_METATYPE(PluginVersion)
