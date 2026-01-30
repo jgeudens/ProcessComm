@@ -24,7 +24,7 @@ void LoggerClient::requestPluginInfo()
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }
 
-void LoggerClient::GetAvailableDataPoints()
+void LoggerClient::getAvailableDataPoints()
 {
     logger::v1::GetAvailableDataPointsRequest request;
 
@@ -38,29 +38,29 @@ void LoggerClient::GetAvailableDataPoints()
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }
 
-void LoggerClient::StartLogging()
+void LoggerClient::startLogging()
 {
     logger::v1::StartLoggingRequest request;
 
     auto* reply = _client->StartLogging(request).release();
 
     executeUnaryRpc<logger::v1::StartLoggingResponse>(
-      this, reply, [this](const logger::v1::StartLoggingResponse& response) { emit loggingStarted(); },
+      this, reply, [this](const logger::v1::StartLoggingResponse&) { emit loggingStarted(); },
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }
 
-void LoggerClient::StopLogging()
+void LoggerClient::stopLogging()
 {
     logger::v1::StopLoggingRequest request;
 
     auto* reply = _client->StopLogging(request).release();
 
     executeUnaryRpc<logger::v1::StopLoggingResponse>(
-      this, reply, [this](const logger::v1::StopLoggingResponse& response) { emit loggingStopped(); },
+      this, reply, [this](const logger::v1::StopLoggingResponse&) { emit loggingStopped(); },
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }
 
-void LoggerClient::IsLoggingActive()
+void LoggerClient::isLoggingActive()
 {
     logger::v1::IsLoggingActiveRequest request;
 
@@ -75,7 +75,7 @@ void LoggerClient::IsLoggingActive()
       [this](int code, const QString& error) { emit callFailed(code, error); });
 }
 
-void LoggerClient::ReadLog(const QStringList& availableDataPoints)
+void LoggerClient::readLog(const QStringList& availableDataPoints)
 {
     logger::v1::ReadLogRequest request;
 

@@ -47,6 +47,10 @@ class LoggerPluginService(logger_pb2_grpc.LoggerPluginServicer):
         self._logging_active = False
         return logger_pb2.StopLoggingResponse()
 
+    def IsLoggingActive(self, request, context):
+        """Checks if logging is currently active."""
+        return logger_pb2.IsLoggingActiveResponse(is_active=self._logging_active)
+
     def ReadLog(self, request, context):
         """Reads logged data for specified data points."""
         results = []

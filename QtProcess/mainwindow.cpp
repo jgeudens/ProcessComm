@@ -12,13 +12,13 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), _ui(new Ui::MainW
     connectLogger();
 
     connect(_ui->btnPluginInfo, &QPushButton::clicked, [this]() { _loggerClient->requestPluginInfo(); });
-    connect(_ui->btnStartLogging, &QPushButton::clicked, [this]() { _loggerClient->StartLogging(); });
-    connect(_ui->btnStopLogging, &QPushButton::clicked, [this]() { _loggerClient->StopLogging(); });
+    connect(_ui->btnStartLogging, &QPushButton::clicked, [this]() { _loggerClient->startLogging(); });
+    connect(_ui->btnStopLogging, &QPushButton::clicked, [this]() { _loggerClient->stopLogging(); });
     connect(_ui->btnAvailableDatapoints, &QPushButton::clicked, [this]() {
-        _loggerClient->GetAvailableDataPoints();
+        _loggerClient->getAvailableDataPoints();
         _availableDataPoints.clear();
     });
-    connect(_ui->btnReadlog, &QPushButton::clicked, [this]() { _loggerClient->ReadLog(_availableDataPoints); });
+    connect(_ui->btnReadlog, &QPushButton::clicked, [this]() { _loggerClient->readLog(_availableDataPoints); });
 }
 
 MainWindow::~MainWindow()
@@ -78,15 +78,16 @@ void MainWindow::connectLogger()
     connect(_loggerClient, &LoggerClient::logDataReceived, [this](const QList<PluginLogResult>& logData) {
         qInfo() << "Log data received";
         _ui->statusbar->showMessage("Log data received", 5000);
+        _ui->txtLog->clear();
         for (const PluginLogResult& result : logData)
         {
             qInfo() << "Data Point:" << result.dataPointName() << "Value:" << result.value()
                     << "Status:" << result.status() << "Error Message:" << result.errorMessage();
-            _ui->txtLog->setPlainText(QString("Data Point: %1, Value: %2, Status: %3, Error Message: %4")
-                                        .arg(result.dataPointName())
-                                        .arg(result.value())
-                                        .arg(result.status())
-                                        .arg(result.errorMessage()));
+            _ui->txtLog->appendPlainText(QString("Data Point: %1, Value: %2, Status: %3, Error Message: %4")
+                                           .arg(result.dataPointName())
+                                           .arg(result.value())
+                                           .arg(result.status())
+                                           .arg(result.errorMessage()));
         }
     });
 }

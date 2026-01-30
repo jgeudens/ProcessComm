@@ -20,11 +20,11 @@ class LoggerClient : public QObject
 public:
     explicit LoggerClient(const QUrl& endpoint, QObject* parent = nullptr);
     void requestPluginInfo();
-    void GetAvailableDataPoints();
-    void StartLogging();
-    void StopLogging();
-    void IsLoggingActive();
-    void ReadLog(const QStringList& availableDataPoints);
+    void getAvailableDataPoints();
+    void startLogging();
+    void stopLogging();
+    void isLoggingActive();
+    void readLog(const QStringList& availableDataPoints);
 
 signals:
     void callFailed(int grpcStatus, const QString& errorString);
