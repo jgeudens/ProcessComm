@@ -20,7 +20,10 @@ find_package(Qt6 REQUIRED COMPONENTS
 qt_standard_project_setup()
 
 # Path to your proto file
-set(PROTO_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../proto/echo.proto)
+set(PROTO_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/../proto/echo/v1/echo.proto
+    ${CMAKE_CURRENT_SOURCE_DIR}/../proto/logger/v1/logger.proto
+)
 
 qt_add_protobuf(proto_lib
     PROTO_FILES ${PROTO_FILES}
@@ -35,7 +38,13 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        loggerclient.cpp
+        loggerclient.h
+
+        pluginversion.h
+
         echoclient.cpp
+        echoclient.h
         grpcunarycall.h
 )
 

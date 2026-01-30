@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package logger.v1;
+
+service LoggerPlugin {
+  // --- Metadata ---
+  rpc GetPluginInfo(GetPluginInfoRequest) returns (GetPluginInfoResponse);
+
+  // --- Logging Operations ---
+  rpc GetAvailableDataPoints(GetAvailableDataPointsRequest) returns (GetAvailableDataPointsResponse);
+  rpc StartLogging(StartLoggingRequest) returns (StartLoggingResponse);
+  rpc IsLoggingActive(IsLoggingActiveRequest) returns (IsLoggingActiveResponse);
+  rpc StopLogging(StopLoggingRequest) returns (StopLoggingResponse);
+  rpc ReadLog(ReadLogRequest) returns (ReadLogResponse);
+}
+
+// --- Message Definitions ---
+
+message GetPluginInfoRequest {}
+
+message GetPluginInfoResponse {
+  string version = 1;
+  string type = 2;
+  string author = 3;
+  string description = 4;
+}
+
+message GetAvailableDataPointsRequest {}
+
+message GetAvailableDataPointsResponse {
+  repeated string data_point = 1;
+}
+
+message StartLoggingRequest {}
+
+message StartLoggingResponse {}
+
+message IsLoggingActiveRequest {}
+
+message IsLoggingActiveResponse {
+  bool is_active = 1;
+}
+
+message StopLoggingRequest {}
+
+message StopLoggingResponse {}
+
+message ReadLogRequest {
+  repeated string data_point = 1;
+}
+
+message ReadLogResponse {
+  repeated LogResult results = 1;
+}
+
+message LogResult {
+  string data_point_name = 1;
+
+  int32 value = 2;
+  LogReadStatus status = 3;
+  string error_message = 4;
+}
+
+enum LogReadStatus {
+  LOG_READ_STATUS_SUCCESS = 0;
+  LOG_READ_STATUS_UNSPECIFIED = 1;
+  LOG_READ_STATUS_NOT_FOUND = 2;
+  LOG_READ_STATUS_TIMEOUT = 3;
+  LOG_READ_STATUS_GENERIC_ERROR = 6;
+}

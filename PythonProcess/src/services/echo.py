@@ -2,8 +2,7 @@
 
 import logging
 
-import echo_pb2
-import echo_pb2_grpc
+from echo.v1 import echo_pb2, echo_pb2_grpc
 
 logger = logging.getLogger(__name__)
 
