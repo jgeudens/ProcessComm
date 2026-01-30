@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), _ui(new Ui::MainW
     connect(_ui->btnStartLogging, &QPushButton::clicked, [this]() { _loggerClient->startLogging(); });
     connect(_ui->btnStopLogging, &QPushButton::clicked, [this]() { _loggerClient->stopLogging(); });
     connect(_ui->btnAvailableDatapoints, &QPushButton::clicked, [this]() {
-        _loggerClient->getAvailableDataPoints();
         _availableDataPoints.clear();
+        _loggerClient->getAvailableDataPoints();
     });
     connect(_ui->btnReadlog, &QPushButton::clicked, [this]() { _loggerClient->readLog(_availableDataPoints); });
 }
