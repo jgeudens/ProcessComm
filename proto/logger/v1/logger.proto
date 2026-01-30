@@ -9,6 +9,7 @@ service LoggerPlugin {
   // --- Logging Operations ---
   rpc GetAvailableDataPoints(GetAvailableDataPointsRequest) returns (GetAvailableDataPointsResponse);
   rpc StartLogging(StartLoggingRequest) returns (StartLoggingResponse);
+  rpc IsLoggingActive(IsLoggingActiveRequest) returns (IsLoggingActiveResponse);
   rpc StopLogging(StopLoggingRequest) returns (StopLoggingResponse);
   rpc ReadLog(ReadLogRequest) returns (ReadLogResponse);
 }
@@ -34,6 +35,12 @@ message StartLoggingRequest {}
 
 message StartLoggingResponse {}
 
+message IsLoggingActiveRequest {}
+
+message IsLoggingActiveResponse {
+  bool is_active = 1;
+}
+
 message StopLoggingRequest {}
 
 message StopLoggingResponse {}
@@ -47,7 +54,7 @@ message ReadLogResponse {
 }
 
 message LogResult {
-  string endpoint_name = 1;
+  string data_point_name = 1;
 
   int32 value = 2;
   LogReadStatus status = 3;

@@ -49,6 +49,11 @@ class LoggerPluginStub(object):
                 request_serializer=logger_dot_v1_dot_logger__pb2.StartLoggingRequest.SerializeToString,
                 response_deserializer=logger_dot_v1_dot_logger__pb2.StartLoggingResponse.FromString,
                 _registered_method=True)
+        self.IsLoggingActive = channel.unary_unary(
+                '/logger.v1.LoggerPlugin/IsLoggingActive',
+                request_serializer=logger_dot_v1_dot_logger__pb2.IsLoggingActiveRequest.SerializeToString,
+                response_deserializer=logger_dot_v1_dot_logger__pb2.IsLoggingActiveResponse.FromString,
+                _registered_method=True)
         self.StopLogging = channel.unary_unary(
                 '/logger.v1.LoggerPlugin/StopLogging',
                 request_serializer=logger_dot_v1_dot_logger__pb2.StopLoggingRequest.SerializeToString,
@@ -84,6 +89,12 @@ class LoggerPluginServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def IsLoggingActive(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def StopLogging(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -113,6 +124,11 @@ def add_LoggerPluginServicer_to_server(servicer, server):
                     servicer.StartLogging,
                     request_deserializer=logger_dot_v1_dot_logger__pb2.StartLoggingRequest.FromString,
                     response_serializer=logger_dot_v1_dot_logger__pb2.StartLoggingResponse.SerializeToString,
+            ),
+            'IsLoggingActive': grpc.unary_unary_rpc_method_handler(
+                    servicer.IsLoggingActive,
+                    request_deserializer=logger_dot_v1_dot_logger__pb2.IsLoggingActiveRequest.FromString,
+                    response_serializer=logger_dot_v1_dot_logger__pb2.IsLoggingActiveResponse.SerializeToString,
             ),
             'StopLogging': grpc.unary_unary_rpc_method_handler(
                     servicer.StopLogging,
@@ -206,6 +222,33 @@ class LoggerPlugin(object):
             '/logger.v1.LoggerPlugin/StartLogging',
             logger_dot_v1_dot_logger__pb2.StartLoggingRequest.SerializeToString,
             logger_dot_v1_dot_logger__pb2.StartLoggingResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def IsLoggingActive(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/logger.v1.LoggerPlugin/IsLoggingActive',
+            logger_dot_v1_dot_logger__pb2.IsLoggingActiveRequest.SerializeToString,
+            logger_dot_v1_dot_logger__pb2.IsLoggingActiveResponse.FromString,
             options,
             channel_credentials,
             insecure,

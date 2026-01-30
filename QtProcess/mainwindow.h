@@ -28,5 +28,7 @@ private:
     Ui::MainWindow* _ui;
     EchoClient* _echoClient = nullptr;
     LoggerClient* _loggerClient = nullptr;
+
+    QStringList _availableDataPoints;
 };
 #endif // MAINWINDOW_H

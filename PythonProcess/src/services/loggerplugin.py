@@ -35,7 +35,7 @@ class LoggerPluginService(logger_pb2_grpc.LoggerPluginServicer):
     # --- Logging Operations ---
     def GetAvailableDataPoints(self, request, context):
         """Returns the list of available data points for logging."""
-        return logger_pb2.GetAvailableDataPointsResponse(dataPoint=self._data_points)
+        return logger_pb2.GetAvailableDataPointsResponse(data_point=self._data_points)
 
     def StartLogging(self, request, context):
         """Starts the logging process."""
@@ -51,11 +51,11 @@ class LoggerPluginService(logger_pb2_grpc.LoggerPluginServicer):
         """Reads logged data for specified data points."""
         results = []
 
-        for datapoint in request.DataPoint:
+        for datapoint in request.data_point:
             if not self._logging_active:
                 results.append(
                     logger_pb2.LogResult(
-                        endpoint_name=datapoint,
+                        data_point_name=datapoint,
                         status=logger_pb2.LOG_READ_STATUS_GENERIC_ERROR,
                         error_message="Logging not active",
                     )
@@ -65,7 +65,7 @@ class LoggerPluginService(logger_pb2_grpc.LoggerPluginServicer):
             if datapoint not in self._log_storage:
                 results.append(
                     logger_pb2.LogResult(
-                        endpoint_name=datapoint,
+                        data_point_name=datapoint,
                         status=logger_pb2.LOG_READ_STATUS_NOT_FOUND,
                         error_message="Data point not found",
                     )
@@ -74,7 +74,7 @@ class LoggerPluginService(logger_pb2_grpc.LoggerPluginServicer):
 
             results.append(
                 logger_pb2.LogResult(
-                    endpoint_name=datapoint,
+                    data_point_name=datapoint,
                     value=self._log_storage[datapoint],
                     status=logger_pb2.LOG_READ_STATUS_SUCCESS,
                 )

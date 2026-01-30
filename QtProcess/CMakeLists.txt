@@ -26,12 +26,10 @@ set(PROTO_FILES
 )
 
 qt_add_protobuf(proto_lib
-    GENERATE_PACKAGE_SUBFOLDERS
     PROTO_FILES ${PROTO_FILES}
 )
 
 qt_add_grpc(proto_grpc CLIENT
-    GENERATE_PACKAGE_SUBFOLDERS
     PROTO_FILES ${PROTO_FILES}
 )
 
@@ -44,7 +42,7 @@ set(PROJECT_SOURCES
         loggerclient.h
 
         pluginversion.h
-        
+
         echoclient.cpp
         echoclient.h
         grpcunarycall.h

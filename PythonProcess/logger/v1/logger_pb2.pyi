@@ -125,6 +125,32 @@ class StartLoggingResponse(_message.Message):
 Global___StartLoggingResponse: _TypeAlias = StartLoggingResponse  # noqa: Y015
 
 @_typing.final
+class IsLoggingActiveRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___IsLoggingActiveRequest: _TypeAlias = IsLoggingActiveRequest  # noqa: Y015
+
+@_typing.final
+class IsLoggingActiveResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    IS_ACTIVE_FIELD_NUMBER: _builtins.int
+    is_active: _builtins.bool
+    def __init__(
+        self,
+        *,
+        is_active: _builtins.bool = ...,
+    ) -> None: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["is_active", b"is_active"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+
+Global___IsLoggingActiveResponse: _TypeAlias = IsLoggingActiveResponse  # noqa: Y015
+
+@_typing.final
 class StopLoggingRequest(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
@@ -182,23 +208,23 @@ Global___ReadLogResponse: _TypeAlias = ReadLogResponse  # noqa: Y015
 class LogResult(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
-    ENDPOINT_NAME_FIELD_NUMBER: _builtins.int
+    DATA_POINT_NAME_FIELD_NUMBER: _builtins.int
     VALUE_FIELD_NUMBER: _builtins.int
     STATUS_FIELD_NUMBER: _builtins.int
     ERROR_MESSAGE_FIELD_NUMBER: _builtins.int
-    endpoint_name: _builtins.str
+    data_point_name: _builtins.str
     value: _builtins.int
     status: Global___LogReadStatus.ValueType
     error_message: _builtins.str
     def __init__(
         self,
         *,
-        endpoint_name: _builtins.str = ...,
+        data_point_name: _builtins.str = ...,
         value: _builtins.int = ...,
         status: Global___LogReadStatus.ValueType = ...,
         error_message: _builtins.str = ...,
     ) -> None: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["endpoint_name", b"endpoint_name", "error_message", b"error_message", "status", b"status", "value", b"value"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["data_point_name", b"data_point_name", "error_message", b"error_message", "status", b"status", "value", b"value"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
 
 Global___LogResult: _TypeAlias = LogResult  # noqa: Y015
